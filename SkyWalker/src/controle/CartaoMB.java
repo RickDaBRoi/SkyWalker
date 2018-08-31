@@ -5,48 +5,48 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import modelo.Administrador;
+import modelo.Cartao;
 
 @ManagedBean
 @ViewScoped
-public class AdministradorMB {
-	private Administrador administrador = new Administrador();
-	private List<Administrador> administradores = new ArrayList<>();
-	private DAOGenerico<Administrador> dao = new DAOGenerico<>(Administrador.class);
+public class CartaoMB {
+	private Cartao cartao = new Cartao();
+	private List<Cartao> cartoes = new ArrayList<>();
+	private DAOGenerico<Cartao> dao = new DAOGenerico<>(Cartao.class);
 
-	public AdministradorMB() {
-		administradores = dao.buscarTodos();
+	public CartaoMB() {
+		cartoes = dao.buscarTodos();
 	}
-	
+
 	public void inserir() {
-		if (administrador.getIdAdministrador() == null) {
-			dao.salvar(administrador);
+		if (cartao.getIdCard() == null) {
+			dao.salvar(cartao);
 		} else {
-			dao.alterar(administrador);
+			dao.alterar(cartao);
 		}
-		administrador = new Administrador();
-		administradores = dao.buscarTodos();
+		cartao = new Cartao();
+		cartoes = dao.buscarTodos();
 	}
 
 	public void excluir(Long id) {
 		dao.excluir(id);
-		administradores = dao.buscarTodos();
+		cartoes = dao.buscarTodos();
 	}
 
-	public Administrador getAdministrador() {
-		return administrador;
+	public Cartao getCartao() {
+		return cartao;
 	}
 
-	public void setAdministrador(Administrador administrador) {
-		this.administrador = administrador;
+	public void setCartao(Cartao cartao) {
+		this.cartao = cartao;
 	}
 
-	public List<Administrador> getAdministradores() {
-		return administradores;
+	public List<Cartao> getCartoes() {
+		return cartoes;
 	}
 
-	public void setAdministradores(List<Administrador> administradores) {
-		this.administradores = administradores;
+	public void setCartoes(List<Cartao> cartoes) {
+		this.cartoes = cartoes;
 	}
-	
+
 }
