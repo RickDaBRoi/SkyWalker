@@ -1,13 +1,11 @@
 package controle;
 
+import daoGenerico.DAOGenerico;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.faces.bean.ManagedBean;
+import javax.annotation.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import daoGenerico.DAOGenerico;
-import modelo.DependenteCliente;
 import modelo.Historico;
 
 @ManagedBean
@@ -22,7 +20,7 @@ public class HistoricoMB {
 	}
 
 	public void inserir() {
-		if (historico.getIdHistorico() == null) {
+		if (historico.getId() == null) {
 			dao.salvar(historico);
 		} else {
 			dao.alterar(historico);
