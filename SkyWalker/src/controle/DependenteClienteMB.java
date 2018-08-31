@@ -1,54 +1,54 @@
 package controle;
 
+import daoGenerico.DAOGenerico;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.faces.bean.ManagedBean;
+import javax.annotation.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import daoGenerico.DAOGenerico;
 import modelo.DependenteCliente;
 
 @ManagedBean
 @ViewScoped
 public class DependenteClienteMB {
-	private DependenteCliente dependente = new DependenteCliente();
-	private List<DependenteCliente> dependentes = new ArrayList<>();
+	private DependenteCliente dependenteCliente = new DependenteCliente();
+	private List<DependenteCliente> dependenteClientes = new ArrayList<>();
 	private DAOGenerico<DependenteCliente> dao = new DAOGenerico<>(DependenteCliente.class);
 
 	public DependenteClienteMB() {
-		dependentes = dao.buscarTodos();
+		dependenteClientes = dao.buscarTodos();
 	}
-
+	
 	public void inserir() {
-		if (dependente.getIdDependente() == null) {
-			dao.salvar(dependente);
+		if (dependenteCliente.getIdDependente() == null) {
+			dao.salvar(dependenteCliente);
 		} else {
-			dao.alterar(dependente);
+			dao.alterar(dependenteCliente);
 		}
-		dependente = new DependenteCliente();
-		dependentes = dao.buscarTodos();
+		dependenteCliente = new DependenteCliente();
+		dependenteClientes = dao.buscarTodos();
 	}
 
 	public void excluir(Long id) {
 		dao.excluir(id);
-		dependentes = dao.buscarTodos();
+		dependenteClientes = dao.buscarTodos();
 	}
 
-	public DependenteCliente getDependente() {
-		return dependente;
+	public DependenteCliente getDependenteCliente() {
+		return dependenteCliente;
 	}
 
-	public void setDependente(DependenteCliente dependente) {
-		this.dependente = dependente;
+	public void setDependenteCliente(DependenteCliente dependenteCliente) {
+		this.dependenteCliente = dependenteCliente;
 	}
 
-	public List<DependenteCliente> getDependentes() {
-		return dependentes;
+	public List<DependenteCliente> getDependenteClientes() {
+		return dependenteClientes;
 	}
 
-	public void setDependentes(List<DependenteCliente> dependentes) {
-		this.dependentes = dependentes;
+	public void setDependenteClientes(List<DependenteCliente> dependenteClientes) {
+		this.dependenteClientes = dependenteClientes;
 	}
-
+	
+	
 }
