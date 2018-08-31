@@ -13,16 +13,48 @@ import javax.persistence.TemporalType;
 public class Historico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long idHistorico;
+	private long idHistorico;
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date dataAcesso;
 
-	public Long getIdHistorico() {
+	public Historico() {
+		super();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dataAcesso == null) ? 0 : dataAcesso.hashCode());
+		result = prime * result + (int) (idHistorico ^ (idHistorico >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Historico other = (Historico) obj;
+		if (dataAcesso == null) {
+			if (other.dataAcesso != null)
+				return false;
+		} else if (!dataAcesso.equals(other.dataAcesso))
+			return false;
+		if (idHistorico != other.idHistorico)
+			return false;
+		return true;
+	}
+
+	public long getIdHistorico() {
 		return idHistorico;
 	}
 
-	public void setIdHistorico(Long idHistorico) {
+	public void setIdHistorico(long idHistorico) {
 		this.idHistorico = idHistorico;
 	}
 
