@@ -1,55 +1,52 @@
 package controle;
 
+import daoGenerico.DAOGenerico;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.faces.bean.ManagedBean;
+import javax.annotation.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
-import daoGenerico.DAOGenerico;
-import modelo.Cartao;
-import modelo.ClienteTitular;
+import modelo.Administrador;
 
 @ManagedBean
 @ViewScoped
-public class CartaoMB {
-	private Cartao cartao = new Cartao();
-	private List<Cartao> cartoes = new ArrayList<>();
-	private DAOGenerico<Cartao> dao = new DAOGenerico<>(Cartao.class);
+public class AdministradorMB {
+	private Administrador administrador = new Administrador();
+	private List<Administrador> administradores = new ArrayList<>();
+	private DAOGenerico<Administrador> dao = new DAOGenerico<>(Administrador.class);
 
-	public CartaoMB() {
-		cartoes = dao.buscarTodos();
+	public AdministradorMB() {
+		administradores = dao.buscarTodos();
 	}
-
+	
 	public void inserir() {
-		if (cartao.getIdCartao() == null) {
-			dao.salvar(cartao);
+		if (administrador.getIdAdministrador() == null) {
+			dao.salvar(administrador);
 		} else {
-			dao.alterar(cartao);
+			dao.alterar(administrador);
 		}
-		cartao = new Cartao();
-		cartoes = dao.buscarTodos();
+		administrador = new Administrador();
+		administradores = dao.buscarTodos();
 	}
 
 	public void excluir(Long id) {
 		dao.excluir(id);
-		cartoes = dao.buscarTodos();
+		administradores = dao.buscarTodos();
 	}
 
-	public Cartao getCartao() {
-		return cartao;
+	public Administrador getAdministrador() {
+		return administrador;
 	}
 
-	public void setCartao(Cartao cartao) {
-		this.cartao = cartao;
+	public void setAdministrador(Administrador administrador) {
+		this.administrador = administrador;
 	}
 
-	public List<Cartao> getCartoes() {
-		return cartoes;
+	public List<Administrador> getAdministradores() {
+		return administradores;
 	}
 
-	public void setCartoes(List<Cartao> cartoes) {
-		this.cartoes = cartoes;
+	public void setAdministradores(List<Administrador> administradores) {
+		this.administradores = administradores;
 	}
-
+	
 }
