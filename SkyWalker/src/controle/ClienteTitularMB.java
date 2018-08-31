@@ -20,7 +20,7 @@ public class ClienteTitularMB {
 	}
 
 	public void inserir() {
-		if (clienteTitular.getId_cliente() == null) {
+		if (clienteTitular.getIdCliente() == null) {
 			dao.salvar(clienteTitular);
 		} else {
 			dao.alterar(clienteTitular);
