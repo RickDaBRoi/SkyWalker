@@ -1,54 +1,53 @@
 package controle;
 
+import daoGenerico.DAOGenerico;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.faces.bean.ManagedBean;
+import javax.annotation.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import daoGenerico.DAOGenerico;
 import modelo.ClienteTitular;
 
 @ManagedBean
 @ViewScoped
 public class ClienteTitularMB {
-	private ClienteTitular titular = new ClienteTitular();
-	private List<ClienteTitular> titulares = new ArrayList<>();
+	private ClienteTitular clienteTitular = new ClienteTitular();
+	private List<ClienteTitular> clientesTitulares = new ArrayList<>();
 	private DAOGenerico<ClienteTitular> dao = new DAOGenerico<>(ClienteTitular.class);
 
 	public ClienteTitularMB() {
-		titulares = dao.buscarTodos();
+		clientesTitulares = dao.buscarTodos();
 	}
 
 	public void inserir() {
-		if (titular.getIdCliente() == null) {
-			dao.salvar(titular);
+		if (clienteTitular.getId_cliente() == null) {
+			dao.salvar(clienteTitular);
 		} else {
-			dao.alterar(titular);
+			dao.alterar(clienteTitular);
 		}
-		titular = new ClienteTitular();
-		titulares = dao.buscarTodos();
+		clienteTitular = new ClienteTitular();
+		clientesTitulares = dao.buscarTodos();
 	}
 
 	public void excluir(Long id) {
 		dao.excluir(id);
-		titulares = dao.buscarTodos();
+		clientesTitulares = dao.buscarTodos();
 	}
 
 	public ClienteTitular getClienteTitular() {
-		return titular;
+		return clienteTitular;
 	}
 
-	public void setClienteTitular(ClienteTitular titular) {
-		this.titular = titular;
+	public void setClienteTitular(ClienteTitular clienteTitular) {
+		this.clienteTitular = clienteTitular;
 	}
 
 	public List<ClienteTitular> getClientesTitulares() {
-		return titulares;
+		return clientesTitulares;
 	}
 
-	public void setClientesTitulares(List<ClienteTitular> titulares) {
-		this.titulares = titulares;
+	public void setClientesTitulares(List<ClienteTitular> clientesTitulares) {
+		this.clientesTitulares = clientesTitulares;
 	}
 
 }
