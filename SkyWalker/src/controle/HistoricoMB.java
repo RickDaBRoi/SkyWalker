@@ -20,7 +20,7 @@ public class HistoricoMB {
 	}
 
 	public void inserir() {
-		if (historico.getId() == null) {
+		if (historico.getIdHistorico() == null) {
 			dao.salvar(historico);
 		} else {
 			dao.alterar(historico);
